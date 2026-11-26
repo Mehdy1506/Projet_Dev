@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Commande – AnyTime Fitness</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body id="haut">
+
+  <header class="entete">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <p class="info-secondaire">Livraison partout en Tunisie</p>
+    <nav aria-label="Navigation principale">
+      <ul>
+        <li><a href="index.html">Accueil</a></li>
+        <li><a href="produits.html">Catalogue</a></li>
+        <li><a href="client.html">Espace client</a></li>
+        <li><a class="actif" href="commande.html" aria-current="page">Commande</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="contenu">
+
+      <h1>Ma commande</h1>
+      <p class="introduction">Vérifiez le récapitulatif de votre panier, puis renseignez vos informations de livraison. Ce formulaire est une simulation : aucun paiement n'est effectué.</p>
+
+      <section class="section">
+        <h2>Récapitulatif du panier</h2>
+        <div class="tableau-conteneur">
+          <table>
+            <caption>Articles de votre commande</caption>
+            <thead>
+              <tr>
+                <th scope="col">Produit</th>
+                <th scope="col" class="montant">Quantité</th>
+                <th scope="col" class="montant">Prix unitaire</th>
+                <th scope="col" class="montant">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Legging gainant</td>
+                <td class="montant">1</td>
+                <td class="montant">59,00 DT</td>
+                <td class="montant">59,00 DT</td>
+              </tr>
+              <tr>
+                <td>Short running</td>
+                <td class="montant">2</td>
+                <td class="montant">34,00 DT</td>
+                <td class="montant">68,00 DT</td>
+              </tr>
+              <tr>
+                <td>Gourde isotherme</td>
+                <td class="montant">1</td>
+                <td class="montant">35,00 DT</td>
+                <td class="montant">35,00 DT</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <th scope="row" colspan="3" class="montant">Total général</th>
+                <td class="montant">162,00 DT</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </section>
+
+      <section class="formulaire-carte">
+        <h2>Informations de commande</h2>
+        <form action="#" method="post">
+
+          <fieldset>
+            <legend>Informations personnelles</legend>
+            <div class="ligne-formulaire">
+              <label for="commande-nom">Nom</label>
+              <input type="text" id="commande-nom" name="nom" autocomplete="family-name" required>
+            </div>
+            <div class="ligne-formulaire">
+              <label for="commande-prenom">Prénom</label>
+              <input type="text" id="commande-prenom" name="prenom" autocomplete="given-name" required>
+            </div>
+            <div class="ligne-formulaire">
+              <label for="commande-email">Adresse e-mail</label>
+              <input type="email" id="commande-email" name="email" autocomplete="email" required>
+            </div>
+            <div class="ligne-formulaire">
+              <label for="commande-telephone">Téléphone</label>
+              <input type="tel" id="commande-telephone" name="telephone" autocomplete="tel" required>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Adresse de livraison</legend>
+            <div class="ligne-formulaire">
+              <label for="commande-adresse">Adresse</label>
+              <input type="text" id="commande-adresse" name="adresse" autocomplete="street-address" required>
+            </div>
+            <div class="ligne-formulaire">
+              <label for="commande-ville">Ville</label>
+              <input type="text" id="commande-ville" name="ville" autocomplete="address-level2" required>
+            </div>
+            <div class="ligne-formulaire">
+              <label for="commande-code-postal">Code postal</label>
+              <input type="text" id="commande-code-postal" name="code-postal" autocomplete="postal-code" required>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Produit supplémentaire</legend>
+            <div class="ligne-formulaire">
+              <label for="commande-produit">Produit</label>
+              <select id="commande-produit" name="produit" required>
+                <option value="">Choisir un produit</option>
+                <option value="legging">Legging gainant</option>
+                <option value="tshirt">T-shirt respirant</option>
+                <option value="short">Short running</option>
+                <option value="chaussures">Chaussures de running</option>
+                <option value="gourde">Gourde isotherme</option>
+                <option value="tapis">Tapis de yoga</option>
+              </select>
+            </div>
+            <div class="ligne-formulaire">
+              <label for="commande-quantite">Quantité (1 à 10)</label>
+              <input type="number" id="commande-quantite" name="quantite" min="1" max="10" value="1" required>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Mode de livraison</legend>
+            <div class="option-ligne">
+              <input type="radio" id="livraison-standard" name="livraison" value="standard" checked>
+              <label for="livraison-standard">Standard (3 à 5 jours) – 7,00 DT</label>
+            </div>
+            <div class="option-ligne">
+              <input type="radio" id="livraison-express" name="livraison" value="express">
+              <label for="livraison-express">Express (24 h) – 12,00 DT</label>
+            </div>
+            <div class="option-ligne">
+              <input type="radio" id="livraison-retrait" name="livraison" value="retrait">
+              <label for="livraison-retrait">Retrait en boutique – gratuit</label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Options</legend>
+            <div class="option-ligne">
+              <input type="checkbox" id="option-cadeau" name="option-cadeau" value="oui">
+              <label for="option-cadeau">Emballage cadeau</label>
+            </div>
+            <div class="option-ligne">
+              <input type="checkbox" id="option-message" name="option-message" value="oui">
+              <label for="option-message">Message personnalisé</label>
+            </div>
+          </fieldset>
+
+          <div class="ligne-formulaire">
+            <label for="commande-commentaires">Commentaires</label>
+            <textarea id="commande-commentaires" name="commentaires" placeholder="Précisions pour la livraison, taille souhaitée..."></textarea>
+          </div>
+
+          <button class="bouton" type="submit">Valider ma commande</button>
+        </form>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="pied-de-page">
+    <div class="pied-contenu">
+      <p><strong>AnyTime Fitness</strong> – © 2026</p>
+      <ul class="pied-liens">
+        <li><a href="produits.html">Catalogue</a></li>
+        <li><a href="client.html">Espace client</a></li>
+        <li><a href="commande.html">Commande</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <a class="retour-haut" href="#haut">Retour en haut</a>
+
+</body>
+</html>

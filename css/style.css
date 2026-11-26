@@ -1,0 +1,733 @@
+/* =========================================================
+   AnyTime Fitness – feuille de style commune aux 5 pages
+   Palette (5 couleurs) :
+   - principale : orange #d9420b
+   - accent     : bleu nuit #0f172a
+   - fond       : #f8fafc
+   - texte      : #1e293b
+   - secondaire : #475569
+   ========================================================= */
+
+/* ---------- Variables : palette et espacements ---------- */
+:root {
+  --couleur-principale: #d9420b;          /* Couleurs : notation hexadécimale */
+  --couleur-principale-fonce: #b53509;
+  --couleur-accent: #0f172a;
+  --couleur-fond: #f8fafc;
+  --couleur-texte: #1e293b;
+  --couleur-texte-secondaire: #475569;
+  --couleur-blanc: rgb(255, 255, 255);    /* Couleurs : notation rgb() */
+  --couleur-bordure: rgb(203, 213, 225);
+  --ombre-legere: 0 2px 8px rgba(15, 23, 42, 0.12); /* Couleurs : notation rgba() */
+  --rayon: 0.75rem;
+  --espace: 1rem;
+}
+
+/* ---------- Réinitialisation minimale ---------- */
+/* Box Model : border-box inclut padding et border dans la largeur déclarée */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+/* ---------- Typographie générale (héritage : les enfants héritent de body) ---------- */
+/* Sélecteur d'identifiant : #haut est unique par page et sert de cible à l'ancre
+   « Retour en haut ». On préfère une classe partout ailleurs car une classe est
+   réutilisable, alors qu'un identifiant ne peut exister qu'une fois par page. */
+#haut {
+  font-family: "Segoe UI", Roboto, Arial, sans-serif; /* police + police de secours */
+  font-size: 1rem;                                    /* Unités : rem */
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--couleur-texte);
+  background-color: var(--couleur-fond);
+}
+
+h1, h2, h3 {
+  line-height: 1.2;
+  font-weight: 700;
+  color: var(--couleur-accent);
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw, 3.25rem); /* Unités : vw (taille de titre adaptée à l'écran) */
+}
+
+h2 {
+  font-size: 1.75rem;
+  margin: 0 0 1.5rem;
+}
+
+h3 {
+  font-size: 1.25rem;
+}
+
+p {
+  margin: 0 0 1rem;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: var(--couleur-principale);
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--couleur-principale-fonce);
+}
+
+/* Images : jamais plus larges que leur conteneur */
+img {
+  display: block;            /* Display : block */
+  max-width: 100%;
+  height: auto;
+}
+
+/* ---------- En-tête et navigation ---------- */
+/* Positionnement : l'en-tête reste collé en haut (sticky) au-dessus du contenu (z-index) */
+.entete {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;                    /* Flexbox */
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--espace);
+  padding: 0.75rem 1.5rem;
+  background-color: var(--couleur-accent);
+  color: var(--couleur-blanc);
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  text-decoration: none;
+  color: var(--couleur-blanc);
+}
+
+.logo span {
+  color: #ff8a5c; /* orange clair : contraste suffisant sur fond bleu nuit */
+}
+
+.logo:hover {
+  color: var(--couleur-blanc);
+}
+
+/* Élément secondaire masqué sur mobile (voir @media) */
+.info-secondaire {
+  margin: 0;
+  font-size: 0.875rem;
+  color: rgb(203, 213, 225);
+}
+
+/* Sélecteur enfant : seul le ul directement dans nav */
+nav > ul {
+  display: flex;
+  flex-wrap: wrap;   /* Menu mobile sans JavaScript : retour à la ligne */
+  gap: 0.5rem 1.25rem;
+}
+
+/* Sélecteur enfant : les li directement dans ul */
+nav ul > li {
+  display: block;
+}
+
+/* Sélecteur descendant : tous les liens situés dans l'en-tête */
+.entete a {
+  color: var(--couleur-blanc);
+  text-decoration: none;
+  padding: 0.35rem 0.25rem;
+  border-bottom: 2px solid transparent;
+}
+
+.entete a:hover {
+  border-bottom-color: var(--couleur-principale);
+}
+
+/* Lien de la page courante */
+.entete a.actif {
+  border-bottom-color: var(--couleur-principale);
+  font-weight: 700;
+}
+
+/* ---------- Contenu principal ---------- */
+/* Positionnement : static est la valeur par défaut, on l'écrit ici pour le montrer */
+main {
+  position: static;
+}
+
+/* Box Model : largeur de contenu maîtrisée et centrée */
+.contenu {
+  max-width: 70rem;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+.section {
+  margin-bottom: 3rem;
+}
+
+/* Pseudo-élément ::after : trait décoratif sous les titres h2 */
+h2::after {
+  content: "";
+  display: block;
+  width: 3rem;
+  height: 4px;
+  margin-top: 0.5rem;
+  background-color: var(--couleur-principale);
+  border-radius: 2px;
+  transition: width 0.3s ease; /* soulignement animé */
+}
+
+h2:hover::after {
+  width: 6rem;
+}
+
+.introduction {
+  max-width: 45rem;
+  color: var(--couleur-texte-secondaire);
+  font-size: 1.125rem;
+}
+
+/* Display : inline pour un texte mis en valeur dans un titre */
+.accent-texte {
+  display: inline;
+  color: #ff8a5c;
+}
+
+/* ---------- Boutons ---------- */
+/* Display : inline-block pour appliquer padding et dimensions à un lien */
+.bouton {
+  display: inline-block;
+  padding: 0.75em 1.5em;        /* Unités : em (relatives à la taille du texte du bouton) */
+  border: 2px solid var(--couleur-principale);
+  border-radius: var(--rayon);
+  background-color: var(--couleur-principale);
+  color: var(--couleur-blanc);
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.bouton:hover {
+  background-color: var(--couleur-principale-fonce);
+  border-color: var(--couleur-principale-fonce);
+  color: var(--couleur-blanc);
+}
+
+.bouton:active {
+  transform: scale(0.98);
+}
+
+.bouton-secondaire {
+  background-color: transparent;
+  color: var(--couleur-principale);
+}
+
+/* ---------- Héros (page d'accueil) ---------- */
+/* Positionnement : le héros est relatif, l'image absolue le remplit, le texte passe au-dessus (z-index) */
+.hero {
+  position: relative;
+  overflow: hidden;           /* l'image ne déborde pas du héros */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;           /* Unités : vh */
+  padding: 2rem 1.5rem;
+  text-align: center;
+}
+
+.hero-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.hero-contenu {
+  position: relative;
+  z-index: 1;
+  max-width: 40rem;
+  padding: 2rem;
+  border-radius: var(--rayon);
+  background-color: rgba(15, 23, 42, 0.78); /* voile semi-transparent */
+  color: var(--couleur-blanc);
+}
+
+.hero-contenu h1 {
+  margin: 0 0 1rem;
+  color: var(--couleur-blanc);
+}
+
+/* ---------- Cartes (catégories, produits populaires, catalogue) ---------- */
+/* Flexbox : les cartes passent à la ligne quand la fenêtre rétrécit */
+.grille-cartes {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.carte {
+  position: relative;                 /* repère pour le badge en position absolute */
+  flex: 1 1 15rem;                    /* flex-grow, flex-shrink, flex-basis */
+  max-width: 24rem;
+  display: flex;
+  flex-direction: column;             /* lien de commande poussé en bas */
+  overflow: hidden;                   /* contient l'image dans les coins arrondis */
+  border: 1px solid var(--couleur-bordure);
+  border-radius: var(--rayon);
+  background-color: var(--couleur-blanc);
+  box-shadow: var(--ombre-legere);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* État interactif : survol de la carte */
+.carte:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.2);
+}
+
+.carte-corps {
+  display: flex;
+  flex-direction: column;
+  flex: 1;                            /* le corps occupe la hauteur restante */
+  padding: 1rem 1.25rem 1.25rem;
+}
+
+/* Héritage : unset sur la marge. margin n'est pas héritée, donc unset = initial (0).
+   Effet : le titre de carte perd la marge par défaut du navigateur. */
+.carte h2,
+.carte h3 {
+  margin: unset;
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.carte h2::after {
+  content: none;  /* pas de trait décoratif sous les titres de cartes */
+}
+
+.carte-corps > p {
+  flex: 1;
+}
+
+.prix {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--couleur-principale-fonce);
+}
+
+/* Héritage : initial sur la couleur. Effet : l'ancien prix reprend la valeur initiale
+   de color (noir du navigateur) au lieu de la couleur héritée de .prix. */
+.prix-barre {
+  color: initial;
+  font-size: 0.9rem;
+  font-weight: 400;
+  text-decoration: line-through;
+}
+
+/* Le lien de commande est repoussé en bas de la carte */
+.carte .bouton {
+  margin-top: auto;
+}
+
+/* Pseudo-élément ::before : petite flèche décorative devant un lien */
+.lien-fleche::before {
+  content: "\2192";
+  margin-right: 0.4em;
+}
+
+/* Badge « Nouveau » / « Promo » */
+/* Positionnement : absolute dans la carte relative, au-dessus de l'image (z-index) */
+.badge {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 2;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  background-color: var(--couleur-principale);
+  color: var(--couleur-blanc);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.badge-promo {
+  background-color: var(--couleur-accent);
+}
+
+/* ---------- Présentation et liste d'avantages ---------- */
+/* Héritage : revert. Effet : on annule le « list-style: none; padding: 0 » défini plus haut
+   et on retrouve les puces et le retrait par défaut du navigateur. */
+.liste-classique {
+  list-style: revert;
+  padding: revert;
+}
+
+/* ---------- Bloc d'invitation ---------- */
+.invitation {
+  padding: 2rem;
+  border-radius: var(--rayon);
+  background-color: var(--couleur-accent);
+  color: var(--couleur-blanc);
+  text-align: center;
+}
+
+.invitation h2 {
+  color: var(--couleur-blanc);
+}
+
+.invitation h2::after {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.invitation-liens {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* ---------- Formulaires ---------- */
+.formulaires {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.formulaire-carte {
+  flex: 1 1 20rem;
+  padding: 1.5rem;
+  border-radius: var(--rayon);
+  background-color: var(--couleur-blanc);
+  box-shadow: var(--ombre-legere);
+}
+
+.formulaire-carte h2 {
+  font-size: 1.5rem;
+}
+
+fieldset {
+  margin: 0 0 1.25rem;
+  padding: 1rem;
+  border: 1px solid var(--couleur-bordure);
+  border-radius: var(--rayon);
+}
+
+legend {
+  padding: 0 0.5rem;
+  font-weight: 700;
+  color: var(--couleur-accent);
+}
+
+/* Chaque ligne : label au-dessus du champ */
+.ligne-formulaire {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 1rem;
+}
+
+label {
+  font-weight: 600;
+}
+
+/* Astérisque des champs obligatoires (pseudo-élément ::after) */
+label:has(+ input:required)::after,
+label:has(+ select:required)::after,
+label:has(+ textarea:required)::after {
+  content: " *";
+  color: var(--couleur-principale-fonce);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"],
+input[type="number"],
+select,
+textarea {
+  width: 100%;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid var(--couleur-texte-secondaire);
+  border-radius: 0.5rem;
+  background-color: var(--couleur-blanc);
+  color: var(--couleur-texte);
+  font-family: inherit;
+  font-size: 1rem;
+}
+
+textarea {
+  min-height: 8rem;
+  resize: vertical;
+}
+
+/* États interactifs : focus visible sur les champs */
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--couleur-principale);
+  box-shadow: 0 0 0 3px rgba(217, 66, 11, 0.25);
+}
+
+/* Focus clavier : contour de 3 px sur tous les éléments interactifs */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--couleur-principale);
+  outline-offset: 2px;
+}
+
+/* Boutons et cases à cocher alignés avec leur label */
+.option-ligne {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.option-ligne label {
+  font-weight: 400;
+}
+
+.option-ligne input {
+  width: 1.1rem;
+  height: 1.1rem;
+  accent-color: var(--couleur-principale);
+}
+
+.lien-secondaire {
+  display: inline-block;
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+}
+
+/* ---------- Tableau de commande ---------- */
+/* Overflow : le tableau défile horizontalement au lieu de déborder de la page */
+.tableau-conteneur {
+  overflow-x: auto;
+  margin-bottom: 2rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--couleur-blanc);
+}
+
+caption {
+  padding: 0.75rem;
+  text-align: left;
+  font-weight: 700;
+  color: var(--couleur-accent);
+}
+
+th,
+td {
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--couleur-bordure);
+  text-align: left;
+}
+
+thead {
+  background-color: var(--couleur-accent);
+  color: var(--couleur-blanc);
+}
+
+/* Lignes alternées */
+tbody tr:nth-child(even) {
+  background-color: rgb(241, 245, 249);
+}
+
+tfoot {
+  font-weight: 700;
+  background-color: rgb(226, 232, 240);
+}
+
+td.montant,
+th.montant {
+  text-align: right;
+}
+
+/* ---------- Contact ---------- */
+.deux-colonnes {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.deux-colonnes > * {
+  flex: 1;
+  min-width: 18rem;
+}
+
+address {
+  font-style: normal;
+  line-height: 1.8;
+}
+
+address a {
+  text-decoration: none;
+  font-weight: 600;
+}
+
+address a:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Pied de page ---------- */
+.pied-de-page {
+  padding: 2rem 1.5rem;
+  background-color: var(--couleur-accent);
+  color: rgb(203, 213, 225);
+}
+
+.pied-contenu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  max-width: 70rem;
+  margin: 0 auto;
+}
+
+.pied-contenu p {
+  margin: 0;
+}
+
+.pied-liens {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+}
+
+/* Héritage : inherit. Effet : les liens du pied de page reprennent la couleur du texte
+   du pied de page au lieu du orange des liens ordinaires. */
+.pied-de-page a {
+  color: inherit;
+}
+
+.pied-de-page a:hover {
+  color: var(--couleur-blanc);
+}
+
+/* ---------- Bouton « Retour en haut » ---------- */
+/* Positionnement : fixed, toujours visible dans le coin de la fenêtre */
+.retour-haut {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 200;
+  padding: 0.6rem 1rem;
+  border-radius: 999px;
+  background-color: var(--couleur-principale);
+  color: var(--couleur-blanc);
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: var(--ombre-legere);
+}
+
+.retour-haut:hover {
+  background-color: var(--couleur-principale-fonce);
+  color: var(--couleur-blanc);
+}
+
+.retour-haut:active {
+  transform: scale(0.98);
+}
+
+/* ---------- Responsive ---------- */
+/* Tablette : jusqu'à 900 px */
+@media (max-width: 900px) {
+  .contenu {
+    padding: 1.5rem 1rem;
+  }
+
+  .entete {
+    padding: 0.75rem 1rem;
+  }
+
+  .deux-colonnes {
+    flex-direction: column;
+  }
+
+  .invitation {
+    padding: 1.5rem 1rem;
+  }
+}
+
+/* Mobile : jusqu'à 600 px */
+@media (max-width: 600px) {
+  /* Display : none, l'élément secondaire disparaît sur mobile */
+  .info-secondaire {
+    display: none;
+  }
+
+  .entete {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav > ul {
+    flex-direction: column;   /* menu empilé */
+    gap: 0.25rem;
+  }
+
+  .hero {
+    min-height: 60vh;
+    padding: 1rem;
+  }
+
+  .hero-contenu {
+    padding: 1.25rem;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+  }
+
+  .formulaires {
+    flex-direction: column;
+  }
+
+  .formulaire-carte {
+    padding: 1rem;
+  }
+
+  .carte {
+    max-width: 100%;
+  }
+
+  .pied-contenu {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.logo img {
+  display: block;
+  height: 3rem;
+  width: auto;
+}

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="T-shirt respirant">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1e3a8a"/>
+      <stop offset="1" stop-color="#0ea5e9"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#g)"/>
+  <circle cx="400" cy="270" r="210" fill="rgba(255,255,255,0.10)"/>
+  <g transform="translate(250 120)" fill="rgba(255,255,255,0.92)"><path d="M80 0 L110 15 Q150 35 190 15 L220 0 L300 55 L260 105 L230 85 L230 260 L70 260 L70 85 L40 105 L0 55 Z"/></g>
+  <text x="400" y="540" text-anchor="middle" font-family="Arial, sans-serif" font-size="40" font-weight="700" fill="#ffffff">T-shirt respirant</text>
+</svg>
